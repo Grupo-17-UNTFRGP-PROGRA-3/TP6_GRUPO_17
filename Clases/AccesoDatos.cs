@@ -9,7 +9,7 @@ namespace TP6_GRUPO_17.Conexion
     public class AccesoDatos
     {
         string rutaProductos = @"Data Source=localhost\sqlexpress;Initial Catalog=Neptuno; Integrated Security=True";
-
+        
         public SqlConnection ObtenerConexion()
         {
             SqlConnection sqlConnection = new SqlConnection(rutaProductos);

@@ -18,7 +18,33 @@
             <h2>Ejercicio 1</h2>
 
             <h2>Productos</h2>
-            <asp:GridView ID="gvProductos" runat="server">
+            <asp:GridView ID="gvProductos" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnPageIndexChanging="gvProductos_PageIndexChanging">
+                <Columns>
+                    <asp:TemplateField HeaderText="Id">
+                        <ItemTemplate>
+                            &nbsp;<asp:Label ID="lbl_it_id" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
+                            &nbsp;
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Nombre">
+                        <ItemTemplate>
+                            &nbsp;<asp:Label ID="lbl_it_nombre" runat="server" Text='<%# Bind("NombreProducto") %>'></asp:Label>
+                            &nbsp;
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Cantidad x Unidad">
+                        <ItemTemplate>
+                            &nbsp;<asp:Label ID="lbl_it_cantidadPorUnidad" runat="server" Text='<%# Bind("CantidadPorUnidad") %>'></asp:Label>
+                            &nbsp;
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Precio x Unidad">
+                        <ItemTemplate>
+                            &nbsp;<asp:Label ID="lbl_it_precioPorUnidad" runat="server" Text='<%# Bind("PrecioUnidad") %>'></asp:Label>
+                            &nbsp;
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
             </asp:GridView>
         </div>
     </form>
