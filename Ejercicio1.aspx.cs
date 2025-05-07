@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TP6_GRUPO_17.Clases;
 using TP6_GRUPO_17.Conexion;
 
 namespace TP6_GRUPO_17
@@ -28,6 +29,18 @@ namespace TP6_GRUPO_17
         protected void gvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvProductos.PageIndex = e.NewPageIndex;
+            CargarGridView();
+        }
+
+        protected void gvProductos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string idProducto = ((Label)gvProductos.Rows[e.RowIndex].FindControl("lbl_it_id")).Text;
+
+
+            int id = (int.Parse(idProducto));
+
+            GestionProductos gestionProductos = new GestionProductos();
+            gestionProductos.EliminarProductos(id);
             CargarGridView();
         }
     }

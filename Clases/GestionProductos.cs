@@ -22,5 +22,12 @@ namespace TP6_GRUPO_17.Conexion
         {
             return ObtenerTabla("Productos", "SELECT * FROM Productos");
         }
+
+        public void EliminarProductos(int id)
+        {
+           AccesoDatos datos = new AccesoDatos();
+            datos.EliminarProductos(id);
+
+        }
     }
 }

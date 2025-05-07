@@ -21,6 +21,11 @@ namespace TP6_GRUPO_17.Clases
         {
 
         }
+
+        public Producto(int idProducto)
+        {
+            _idProducto = idProducto;
+        }
         
         public Producto(int idProducto, string nombreProducto, int idProveedor, string cantidadPorUnidad, decimal precioUnidad, int unidadesEnExistencia, int unidadesEnPedido, int nivelNuevoPedido, bool suspendido)
         {

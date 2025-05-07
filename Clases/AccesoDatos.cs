@@ -9,7 +9,7 @@ namespace TP6_GRUPO_17.Conexion
     public class AccesoDatos
     {
         string rutaProductos = @"Data Source=localhost\sqlexpress;Initial Catalog=Neptuno; Integrated Security=True";
-        
+
         public SqlConnection ObtenerConexion()
         {
             SqlConnection sqlConnection = new SqlConnection(rutaProductos);
@@ -18,7 +18,7 @@ namespace TP6_GRUPO_17.Conexion
                 sqlConnection.Open();
                 return sqlConnection;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 return null;
             }
@@ -32,9 +32,23 @@ namespace TP6_GRUPO_17.Conexion
                 sqlDataAdapter = new SqlDataAdapter(consultaSql, ObtenerConexion());
                 return sqlDataAdapter;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 return null;
+            }
+        }
+
+        public void EliminarProductos(int id)
+        {
+            string consulta = "DELETE FROM Productos WHERE IdProducto = @IdProducto";
+            SqlConnection Conexion = ObtenerConexion();
+            if (Conexion != null)
+            {
+                SqlCommand command = new SqlCommand(consulta, Conexion);
+                command.Parameters.AddWithValue("@IdProducto", id);
+                command.ExecuteNonQuery();
+                Conexion.Close();
+
             }
         }
     }
