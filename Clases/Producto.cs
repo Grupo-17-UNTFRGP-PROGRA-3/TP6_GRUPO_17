@@ -10,6 +10,7 @@ namespace TP6_GRUPO_17.Clases
         private int _idProducto;
         private string _nombreProducto;
         private int _idProveedor;
+        private int _idCategoria;
         private string _cantidadPorUnidad;
         private decimal _precioUnidad;
         private int _unidadesEnExistencia;
@@ -27,11 +28,12 @@ namespace TP6_GRUPO_17.Clases
             _idProducto = idProducto;
         }
         
-        public Producto(int idProducto, string nombreProducto, int idProveedor, string cantidadPorUnidad, decimal precioUnidad, int unidadesEnExistencia, int unidadesEnPedido, int nivelNuevoPedido, bool suspendido)
+        public Producto(int idProducto, string nombreProducto, int idProveedor, int idCategoria, string cantidadPorUnidad, decimal precioUnidad, int unidadesEnExistencia, int unidadesEnPedido, int nivelNuevoPedido, bool suspendido)
         {
             _idProducto = idProducto;
             _nombreProducto = nombreProducto;
             _idProveedor = idProveedor;
+            _idCategoria = idCategoria;
             _cantidadPorUnidad = cantidadPorUnidad;
             _precioUnidad = precioUnidad;
             _unidadesEnExistencia = unidadesEnExistencia;
