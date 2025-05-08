@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using TP6_GRUPO_17.Conexion;
 
 namespace TP6_GRUPO_17
 {
@@ -11,7 +12,16 @@ namespace TP6_GRUPO_17
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                CargarGridView();
+            }
+        }
+        private void CargarGridView()
+        {
+            GestionProductos gestionProductos = new GestionProductos();
+            gvProductos2.DataSource = gestionProductos.ObtenerProductos();
+            gvProductos2.DataBind();
         }
     }
 }

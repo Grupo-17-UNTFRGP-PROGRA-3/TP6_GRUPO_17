@@ -21,7 +21,7 @@
             <h1>Inicio</h1>
          </div>
          <div>
-             <asp:HyperLink ID="hpSeleccionarProductos" runat="server" style="text-decoration: underline;" NavigateUrl="~/SeleccionarProductos.aspx">Seleccionar productos</asp:HyperLink>
+             <asp:HyperLink ID="hpSeleccionarProductos" runat="server" style="text-decoration: underline;" NavigateUrl="~/SeleccionarProductos.aspx">Seleccionar Productos</asp:HyperLink>
          </div>
          <div>
             <asp:HyperLink ID="hpEliminarProductosSeleccionados" runat="server" style="text-decoration: underline" NavigateUrl="~/EliminarProductosSeleccionados.aspx">Eliminar Productos seleccionados</asp:HyperLink>
