@@ -52,17 +52,15 @@ namespace TP6_GRUPO_17
 
         protected void gvProductos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            gvProductos.EditIndex=-1;
+            gvProductos.EditIndex = -1;
             CargarGridView();
         }
 
         protected void gvProductos_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            GestionProductos gestionProductos = new GestionProductos();
             int idProducto = Convert.ToInt32(((Label)gvProductos.Rows[e.RowIndex].FindControl("lbl_it_id")).Text);
             string nombre = ((TextBox)gvProductos.Rows[e.RowIndex].FindControl("txt_et_Nombre")).Text;
             string cantXunid = ((TextBox)gvProductos.Rows[e.RowIndex].FindControl("txt_et_CantXU")).Text;
-
             string precio = transformarAPuntoDecimal(((TextBox)gvProductos.Rows[e.RowIndex].FindControl("txt_et_Precio")).Text);
 
             GestionProductos gestion = new GestionProductos();

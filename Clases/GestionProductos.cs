@@ -26,8 +26,7 @@ namespace TP6_GRUPO_17.Conexion
         public void EliminarProductos(int id)
         {
            AccesoDatos datos = new AccesoDatos();
-            datos.EliminarProductos(id);
-
+           datos.EliminarProductos(id);
         }
         public void ActualizarProductos(int id, string nombre, string cantidad, string precio)
         {

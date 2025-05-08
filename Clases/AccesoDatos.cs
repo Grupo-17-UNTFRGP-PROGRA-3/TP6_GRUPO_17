@@ -48,10 +48,7 @@ namespace TP6_GRUPO_17.Conexion
                 command.Parameters.AddWithValue("@IdProducto", id);
                 command.ExecuteNonQuery();
                 Conexion.Close();
-
             }
         }
-
-        
     }
 }
