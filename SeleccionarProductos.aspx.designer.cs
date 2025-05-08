@@ -11,7 +11,7 @@ namespace TP6_GRUPO_17
 {
 
 
-    public partial class Ejercicio2
+    public partial class WebForm1
     {
 
         /// <summary>
@@ -24,30 +24,21 @@ namespace TP6_GRUPO_17
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// hpSeleccionarProductos control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hpSeleccionarProductos;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
 
         /// <summary>
-        /// hpEliminarProductosSeleccionados control.
+        /// hpVolverInicio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hpEliminarProductosSeleccionados;
-
-        /// <summary>
-        /// hpMostrarProductos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hpMostrarProductos;
+        protected global::System.Web.UI.WebControls.HyperLink hpVolverInicio;
     }
 }

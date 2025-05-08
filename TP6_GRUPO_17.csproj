@@ -68,6 +68,9 @@
     <Content Include="Ejercicio2.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="Web.config" />
+    <Content Include="SeleccionarProductos.aspx" />
+    <Content Include="EliminarProductosSeleccionados.aspx" />
+    <Content Include="MostrarProductos.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\AccesoDatos.cs" />
@@ -95,6 +98,27 @@
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeleccionarProductos.aspx.cs">
+      <DependentUpon>SeleccionarProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeleccionarProductos.aspx.designer.cs">
+      <DependentUpon>SeleccionarProductos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EliminarProductosSeleccionados.aspx.cs">
+      <DependentUpon>EliminarProductosSeleccionados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EliminarProductosSeleccionados.aspx.designer.cs">
+      <DependentUpon>EliminarProductosSeleccionados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MostrarProductos.aspx.cs">
+      <DependentUpon>MostrarProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MostrarProductos.aspx.designer.cs">
+      <DependentUpon>MostrarProductos.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -17,6 +17,18 @@
             </nav>
             <h2>Ejercicio 2</h2>
         </div>
+         <div>
+            <h1>Inicio</h1>
+         </div>
+         <div>
+             <asp:HyperLink ID="hpSeleccionarProductos" runat="server" style="text-decoration: underline;" NavigateUrl="~/SeleccionarProductos.aspx">Seleccionar productos</asp:HyperLink>
+         </div>
+         <div>
+            <asp:HyperLink ID="hpEliminarProductosSeleccionados" runat="server" style="text-decoration: underline" NavigateUrl="~/EliminarProductosSeleccionados.aspx">Eliminar Productos seleccionados</asp:HyperLink>
+         </div>
+         <div>
+            <asp:HyperLink ID="hpMostrarProductos" runat="server" style="text-decoration: underline" NavigateUrl="~/MostrarProductos.aspx">Mostrar Productos</asp:HyperLink>
+         </div>
     </form>
 </body>
 </html>
