@@ -45,19 +45,18 @@ namespace TP6_GRUPO_17.Conexion
             return resultado;
         }
         
-        public void ActualizarProductos(int id, string nombre, string cantidad, string precio)
+        public bool ActualizarProducto(int id, string nombre, string cantidad, string precio)
         {
+            bool resultado = false;
             AccesoDatos accesoDatos=new AccesoDatos();
-            string consulta = "UPDATE [Neptuno].[dbo].[Productos] SET NombreProducto = '" + nombre + "', CantidadPorUnidad = '" + cantidad + "'," +
-                "PrecioUnidad = " + precio + " WHERE IdProducto = @IdProducto";
             SqlConnection Conexion = accesoDatos.ObtenerConexion();
+
             if (Conexion != null)
             {
-                SqlCommand command = new SqlCommand(consulta, Conexion);
-                command.Parameters.AddWithValue("@IdProducto", id);
-                command.ExecuteNonQuery();
-                Conexion.Close();
+                resultado = accesoDatos.EjecutarActualizacion(id, nombre, cantidad, precio);
             }
+
+            return resultado;
         }
     }
 }

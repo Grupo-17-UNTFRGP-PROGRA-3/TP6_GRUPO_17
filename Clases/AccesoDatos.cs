@@ -7,10 +7,22 @@ using System.Web;
 namespace TP6_GRUPO_17.Conexion
 {
     public class AccesoDatos
-    {   
+    {
         // Propiedades
         string rutaProductos = @"Data Source=localhost\sqlexpress;Initial Catalog=Neptuno; Integrated Security=True";
+
         private string queryEliminarPorId = "DELETE FROM Productos WHERE IdProducto = @IdProducto";
+
+        /*private string queryActualizarProducto = "UPDATE [Neptuno].[dbo].[Productos] SET NombreProducto = '" + nombre +
+                                                 "', CantidadPorUnidad = '" + cantidad + "'," +
+                                                 "PrecioUnidad = " + precio +
+                                                 " WHERE IdProducto = @IdProducto";*/
+
+        private string queryActualizarProducto = "UPDATE [Neptuno].[dbo].[Productos] " +
+                                                 "SET NombreProducto = @NombreProducto, " +
+                                                 "CantidadPorUnidad = @CantidadPorUnidad, " +
+                                                 "PrecioUnidad = @PrecioUnidad " +
+                                                 "WHERE IdProducto = @IdProducto";
 
         // Constructor
         public AccesoDatos()
@@ -49,11 +61,33 @@ namespace TP6_GRUPO_17.Conexion
 
         public bool EjecutarEliminacion(int id)
         {
-            try 
+            try
             {
                 AccesoDatos accesoDatos = new AccesoDatos();
                 SqlConnection Conexion = accesoDatos.ObtenerConexion();
                 SqlCommand command = new SqlCommand(queryEliminarPorId, Conexion);
+                command.Parameters.AddWithValue("@IdProducto", id);
+                command.ExecuteNonQuery();
+                Conexion.Close();
+
+                return true;
+            }
+            catch (Exception exception)
+            {
+                return false;
+            }
+        }
+
+        public bool EjecutarActualizacion(int id, string nombre, string cantidad, string precio)
+        {
+            try
+            {
+                AccesoDatos accesoDatos = new AccesoDatos();
+                SqlConnection Conexion = accesoDatos.ObtenerConexion();
+                SqlCommand command = new SqlCommand(queryActualizarProducto, Conexion);
+                command.Parameters.AddWithValue("@NombreProducto", nombre);
+                command.Parameters.AddWithValue("@CantidadPorUnidad", cantidad);
+                command.Parameters.AddWithValue("@PrecioUnidad", precio);
                 command.Parameters.AddWithValue("@IdProducto", id);
                 command.ExecuteNonQuery();
                 Conexion.Close();

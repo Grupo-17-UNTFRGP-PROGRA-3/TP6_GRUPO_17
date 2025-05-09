@@ -69,7 +69,7 @@ namespace TP6_GRUPO_17
             string precio = transformarAPuntoDecimal(((TextBox)gvProductos.Rows[e.RowIndex].FindControl("txt_et_Precio")).Text);
 
             GestionProductos gestion = new GestionProductos();
-            gestion.ActualizarProductos(idProducto, nombre, cantXunid, precio);
+            gestion.ActualizarProducto(idProducto, nombre, cantXunid, precio);
             gvProductos.EditIndex = -1;
             CargarGridView();
         }
