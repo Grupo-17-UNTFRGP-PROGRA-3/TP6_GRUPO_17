@@ -34,13 +34,8 @@ namespace TP6_GRUPO_17.Conexion
         {
             bool resultado = false;
             AccesoDatos accesoDatos = new AccesoDatos();
-            SqlConnection Conexion = accesoDatos.ObtenerConexion();
 
-            if (Conexion != null)
-            {
-                resultado = accesoDatos.EjecutarEliminacion(id);
-
-            }
+            resultado = accesoDatos.EjecutarEliminacion(id);
             
             return resultado;
         }
@@ -48,13 +43,9 @@ namespace TP6_GRUPO_17.Conexion
         public bool ActualizarProducto(int id, string nombre, string cantidad, string precio)
         {
             bool resultado = false;
-            AccesoDatos accesoDatos=new AccesoDatos();
-            SqlConnection Conexion = accesoDatos.ObtenerConexion();
+            AccesoDatos accesoDatos = new AccesoDatos();
 
-            if (Conexion != null)
-            {
-                resultado = accesoDatos.EjecutarActualizacion(id, nombre, cantidad, precio);
-            }
+            resultado = accesoDatos.EjecutarActualizacion(id, nombre, cantidad, precio);
 
             return resultado;
         }

@@ -13,11 +13,6 @@ namespace TP6_GRUPO_17.Conexion
 
         private string queryEliminarPorId = "DELETE FROM Productos WHERE IdProducto = @IdProducto";
 
-        /*private string queryActualizarProducto = "UPDATE [Neptuno].[dbo].[Productos] SET NombreProducto = '" + nombre +
-                                                 "', CantidadPorUnidad = '" + cantidad + "'," +
-                                                 "PrecioUnidad = " + precio +
-                                                 " WHERE IdProducto = @IdProducto";*/
-
         private string queryActualizarProducto = "UPDATE [Neptuno].[dbo].[Productos] " +
                                                  "SET NombreProducto = @NombreProducto, " +
                                                  "CantidadPorUnidad = @CantidadPorUnidad, " +
