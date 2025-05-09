@@ -17,6 +17,7 @@ namespace TP6_GRUPO_17
         {
             if (!IsPostBack)
             {
+                ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
                 CargarGridView();
             }
         }

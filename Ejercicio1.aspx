@@ -29,7 +29,9 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Nombre">
                         <EditItemTemplate>
-                            <asp:TextBox ID="txt_et_Nombre" runat="server" Text='<%# Bind("NombreProducto") %>'></asp:TextBox>
+                            <asp:TextBox ID="txt_et_Nombre" MaxLength="40" runat="server" Text='<%# Bind("NombreProducto") %>'></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfNombre" runat="server" ControlToValidate="txt_et_Nombre" ErrorMessage="Complete el campo"
+                                ForeColor="Red" Display="Dynamic" />
                         </EditItemTemplate>
                         <ItemTemplate>
                             &nbsp;<asp:Label ID="lbl_it_nombre" runat="server" Text='<%# Bind("NombreProducto") %>'></asp:Label>
@@ -38,7 +40,9 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Cantidad x Unidad">
                         <EditItemTemplate>
-                            <asp:TextBox ID="txt_et_CantXU" runat="server" Text='<%# Bind("CantidadPorUnidad") %>'></asp:TextBox>
+                            <asp:TextBox ID="txt_et_CantXU" MaxLength="20" runat="server" Text='<%# Bind("CantidadPorUnidad") %>'></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rfCantXU" runat="server" ControlToValidate="txt_et_CantXU" ErrorMessage="Complete el campo"
+                                ForeColor="Red" Display="Dynamic" />
                         </EditItemTemplate>
                         <ItemTemplate>
                             &nbsp;<asp:Label ID="lbl_it_cantidadPorUnidad" runat="server" Text='<%# Bind("CantidadPorUnidad") %>'></asp:Label>
@@ -48,6 +52,10 @@
                     <asp:TemplateField HeaderText="Precio x Unidad">
                         <EditItemTemplate>
                             <asp:TextBox ID="txt_et_Precio" runat="server" Text='<%# Bind("PrecioUnidad") %>'></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="revPrecio" runat="server" ControlToValidate="txt_et_Precio"
+                                ValidationExpression="^\d+([.,]\d{1,4})?$" ErrorMessage="Precio inválido" ForeColor="Red" Display ="Dynamic" />
+                            <asp:RequiredFieldValidator ID="rfPrecio" runat="server" ControlToValidate="txt_et_Precio" ErrorMessage="Complete el campo"
+                                ForeColor="Red" Display="Dynamic" />
                         </EditItemTemplate>
                         <ItemTemplate>
                             &nbsp;<asp:Label ID="lbl_it_precioPorUnidad" runat="server" Text='<%# Bind("PrecioUnidad") %>'></asp:Label>
