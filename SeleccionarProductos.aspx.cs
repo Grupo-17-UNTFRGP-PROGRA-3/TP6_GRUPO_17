@@ -23,5 +23,19 @@ namespace TP6_GRUPO_17
             gvProductos2.DataSource = gestionProductos.ObtenerTodosLosProductos();
             gvProductos2.DataBind();
         }
+
+        protected void gvProductos2_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvProductos2.PageIndex = e.NewPageIndex;
+            CargarGridView();
+        }
+
+        protected void gvProductos2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow seleccionado = gvProductos2.SelectedRow;
+            string nombreProducto = ((Label)seleccionado.FindControl("lblNombreProducto")).Text;
+
+            lblMensaje.Text = $"Producto seleccionado: {nombreProducto}";
+        }
     }
 }
