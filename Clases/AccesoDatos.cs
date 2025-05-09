@@ -7,9 +7,18 @@ using System.Web;
 namespace TP6_GRUPO_17.Conexion
 {
     public class AccesoDatos
-    {
+    {   
+        // Propiedades
         string rutaProductos = @"Data Source=localhost\sqlexpress;Initial Catalog=Neptuno; Integrated Security=True";
+        private string queryEliminarPorId = "DELETE FROM Productos WHERE IdProducto = @IdProducto";
 
+        // Constructor
+        public AccesoDatos()
+        {
+
+        }
+
+        // Metodos
         public SqlConnection ObtenerConexion()
         {
             SqlConnection sqlConnection = new SqlConnection(rutaProductos);
@@ -38,16 +47,22 @@ namespace TP6_GRUPO_17.Conexion
             }
         }
 
-        public void EliminarProductos(int id)
+        public bool EjecutarEliminacion(int id)
         {
-            string consulta = "DELETE FROM Productos WHERE IdProducto = @IdProducto";
-            SqlConnection Conexion = ObtenerConexion();
-            if (Conexion != null)
+            try 
             {
-                SqlCommand command = new SqlCommand(consulta, Conexion);
+                AccesoDatos accesoDatos = new AccesoDatos();
+                SqlConnection Conexion = accesoDatos.ObtenerConexion();
+                SqlCommand command = new SqlCommand(queryEliminarPorId, Conexion);
                 command.Parameters.AddWithValue("@IdProducto", id);
                 command.ExecuteNonQuery();
                 Conexion.Close();
+
+                return true;
+            }
+            catch (Exception exception)
+            {
+                return false;
             }
         }
     }

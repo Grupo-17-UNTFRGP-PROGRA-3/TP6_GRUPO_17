@@ -9,6 +9,13 @@ namespace TP6_GRUPO_17.Conexion
 {
     public class GestionProductos
     {
+        // Constructor
+        public GestionProductos()
+        {
+            
+        }
+
+        // Metodos
         private DataTable ObtenerTabla(string nombreTabla, string consultaSql)
         {
             DataSet dataSet = new DataSet();
@@ -18,16 +25,26 @@ namespace TP6_GRUPO_17.Conexion
             return dataSet.Tables[nombreTabla];
         }
 
-        public DataTable ObtenerProductos()
+        public DataTable ObtenerTodosLosProductos()
         {
             return ObtenerTabla("Productos", "SELECT * FROM Productos");
         }
 
-        public void EliminarProductos(int id)
+        public bool EliminarProducto(int id)
         {
-           AccesoDatos datos = new AccesoDatos();
-           datos.EliminarProductos(id);
+            bool resultado = false;
+            AccesoDatos accesoDatos = new AccesoDatos();
+            SqlConnection Conexion = accesoDatos.ObtenerConexion();
+
+            if (Conexion != null)
+            {
+                resultado = accesoDatos.EjecutarEliminacion(id);
+
+            }
+            
+            return resultado;
         }
+        
         public void ActualizarProductos(int id, string nombre, string cantidad, string precio)
         {
             AccesoDatos accesoDatos=new AccesoDatos();

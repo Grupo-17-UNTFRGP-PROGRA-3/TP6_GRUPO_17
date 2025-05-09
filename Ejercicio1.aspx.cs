@@ -24,38 +24,43 @@ namespace TP6_GRUPO_17
         private void CargarGridView()
         {
             GestionProductos gestionProductos = new GestionProductos();
-            gvProductos.DataSource = gestionProductos.ObtenerProductos();
+            gvProductos.DataSource = gestionProductos.ObtenerTodosLosProductos();
             gvProductos.DataBind();
         }
 
+        // Paginacion
         protected void gvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvProductos.PageIndex = e.NewPageIndex;
             CargarGridView();
         }
 
+        // Eliminar un producto
         protected void gvProductos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string idProducto = ((Label)gvProductos.Rows[e.RowIndex].FindControl("lbl_it_id")).Text;
             int id = (int.Parse(idProducto));
 
             GestionProductos gestionProductos = new GestionProductos();
-            gestionProductos.EliminarProductos(id);
+            gestionProductos.EliminarProducto(id);
             CargarGridView();
         }
 
+        // Editar un producto
         protected void gvProductos_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvProductos.EditIndex = e.NewEditIndex;
             CargarGridView();
         }
 
+        // Cancelar edicion de producto
         protected void gvProductos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             gvProductos.EditIndex = -1;
             CargarGridView();
         }
 
+        // Confirmacion de edicion de producto
         protected void gvProductos_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             int idProducto = Convert.ToInt32(((Label)gvProductos.Rows[e.RowIndex].FindControl("lbl_it_id")).Text);
@@ -69,6 +74,7 @@ namespace TP6_GRUPO_17
             CargarGridView();
         }
 
+        // Funciones auxiliares
         protected string transformarAPuntoDecimal(string precio)
         {
             string nuevoPrecio= "";

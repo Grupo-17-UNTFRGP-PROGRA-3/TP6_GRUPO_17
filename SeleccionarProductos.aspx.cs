@@ -20,7 +20,7 @@ namespace TP6_GRUPO_17
         private void CargarGridView()
         {
             GestionProductos gestionProductos = new GestionProductos();
-            gvProductos2.DataSource = gestionProductos.ObtenerProductos();
+            gvProductos2.DataSource = gestionProductos.ObtenerTodosLosProductos();
             gvProductos2.DataBind();
         }
     }
