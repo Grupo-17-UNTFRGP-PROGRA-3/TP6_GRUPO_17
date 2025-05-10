@@ -30,6 +30,14 @@ namespace TP6_GRUPO_17.Conexion
             return ObtenerTabla("Productos", "SELECT * FROM Productos");
         }
 
+        public DataTable ObtenerUnProducto(int id)
+        {
+            string consulta = "SELECT * FROM Productos WHERE IdProducto = " + id;
+            ;
+
+            return ObtenerTabla("Productos", consulta);
+        }
+
         public bool EliminarProducto(int id)
         {
             bool resultado = false;
