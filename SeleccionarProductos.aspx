@@ -68,7 +68,9 @@
                     </td>
                     <td class="auto-style3">
                         <asp:HyperLink ID="hpVolverInicio" runat="server" style="text-decoration: underline;" NavigateUrl="~/Ejercicio2.aspx" >Volver al Inicio</asp:HyperLink>
-                    </td>
+                    &nbsp;&nbsp;&nbsp;
+            <asp:HyperLink ID="hpMostrarProductos" runat="server" style="text-decoration: underline" NavigateUrl="~/MostrarProductos.aspx">Mostrar Productos</asp:HyperLink>
+         &nbsp;</td>
                 </tr>
             </table>
         </div>

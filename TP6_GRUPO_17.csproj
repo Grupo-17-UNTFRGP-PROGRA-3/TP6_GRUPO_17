@@ -69,7 +69,6 @@
     <Content Include="Inicio.aspx" />
     <Content Include="Web.config" />
     <Content Include="SeleccionarProductos.aspx" />
-    <Content Include="EliminarProductosSeleccionados.aspx" />
     <Content Include="MostrarProductos.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -104,13 +103,6 @@
     </Compile>
     <Compile Include="SeleccionarProductos.aspx.designer.cs">
       <DependentUpon>SeleccionarProductos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EliminarProductosSeleccionados.aspx.cs">
-      <DependentUpon>EliminarProductosSeleccionados.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="EliminarProductosSeleccionados.aspx.designer.cs">
-      <DependentUpon>EliminarProductosSeleccionados.aspx</DependentUpon>
     </Compile>
     <Compile Include="MostrarProductos.aspx.cs">
       <DependentUpon>MostrarProductos.aspx</DependentUpon>

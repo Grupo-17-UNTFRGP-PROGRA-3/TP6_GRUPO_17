@@ -49,6 +49,13 @@
             </asp:GridView>
             <asp:Label ID="lbl_PrecioTotal" runat="server" Text="Precio Final: "></asp:Label>
         </div>
+        <p>
+&nbsp;
+            &nbsp;
+                        <asp:HyperLink ID="hpVolverInicio" runat="server" style="text-decoration: underline;" NavigateUrl="~/Ejercicio2.aspx" >Volver al Inicio</asp:HyperLink>
+                    &nbsp;
+            <asp:LinkButton ID="lbEliminarProductos" runat="server" OnClick="lbEliminarProductos_Click">Eliminar Productos seleccionados</asp:LinkButton>
+        </p>
     </form>
 </body>
 </html>

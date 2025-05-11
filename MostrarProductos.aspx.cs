@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -20,6 +20,7 @@ namespace TP6_GRUPO_17
                 GestionProductos gestionProductos = new GestionProductos();
                 gvSeleccionados.DataSource = tabla;
                 gvSeleccionados.DataBind();
+                lbl_PrecioTotal.Visible = false;
 
             }
             calculoPrecioFinal();
@@ -27,15 +28,28 @@ namespace TP6_GRUPO_17
 
        private void calculoPrecioFinal()
         {
+            if(gvSeleccionados.DataSource != null)
+            { 
             DataTable dataTable = ((DataTable)Session["tabla"]);
             decimal precioFinal = 0.0M;
             foreach (DataRow dr in dataTable.Rows)
             {
                 int i = 0;
-                precioFinal +=((decimal)dr["PrecioUnidad"]);
+                precioFinal =  ((decimal)dr["PrecioUnidad"]);
                 i++;
             }
+            lbl_PrecioTotal.Visible=true;
             lbl_PrecioTotal.Text = "Precio Total = $ " + precioFinal.ToString();
+            }
+        }
+
+        protected void lbEliminarProductos_Click(object sender, EventArgs e)
+        {
+            Session["tabla"] = null;
+            gvSeleccionados.DataSource = null;
+            gvSeleccionados.DataBind();
+            lbl_PrecioTotal.Visible = false;
+
         }
     }
 }

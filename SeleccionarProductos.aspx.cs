@@ -16,6 +16,7 @@ namespace TP6_GRUPO_17
             if (!IsPostBack)
             {
                 CargarGridView();
+                
             }
         }
         private void CargarGridView()
@@ -52,8 +53,23 @@ namespace TP6_GRUPO_17
             }
             else
             {
-                tabla.Merge(aux);
+                bool prodRepetido = false;
+                foreach (DataRow row in tabla.Rows)
+                {
+                    if (row["IdProducto"].ToString() == aux.Rows[0]["IdProducto"].ToString())
+                    {
+                        prodRepetido = true;
+
+                        break;
+                    }
+                }
+
+                if (!prodRepetido)
+                {
+                    tabla.Merge(aux);
+                }
             }
+
         }
     }
 }
