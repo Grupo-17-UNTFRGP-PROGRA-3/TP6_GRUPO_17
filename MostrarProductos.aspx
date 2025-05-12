@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:GridView ID="gvSeleccionados" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4">
+            <asp:GridView ID="gvSeleccionados" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowEditing="gvSeleccionados_RowEditing" OnRowUpdating="gvSeleccionados_RowUpdating">
                 <Columns>
                     <asp:TemplateField AccessibleHeaderText="IDProd" HeaderText="ID Prod">
                         <ItemTemplate>
@@ -32,10 +32,14 @@
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Cantidad">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txt_gv_Cantidad" runat="server"></asp:TextBox>
+                        </EditItemTemplate>
                         <ItemTemplate>
-                            <asp:TextBox ID="txt_gv_Cantidad" runat="server" TextMode="Number">1</asp:TextBox>
+                            <asp:Label ID="lbl_gv_Cantidad" runat="server" Text='<%# Bind("Cantidad") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
+                    <asp:CommandField ButtonType="Button" HeaderText="Cambiar Cantidad" ShowCancelButton="False" ShowEditButton="True" ShowHeader="True" />
                 </Columns>
                 <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
                 <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
@@ -48,6 +52,7 @@
                 <SortedDescendingHeaderStyle BackColor="#002876" />
             </asp:GridView>
             <asp:Label ID="lbl_PrecioTotal" runat="server" Text="Precio Final: "></asp:Label>
+            <br />
         </div>
         <p>
 &nbsp;

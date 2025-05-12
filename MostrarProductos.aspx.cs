@@ -15,13 +15,8 @@ namespace TP6_GRUPO_17
         {
             if (!IsPostBack)
             {
-
-                DataTable tabla = (DataTable)Session["tabla"];
-                GestionProductos gestionProductos = new GestionProductos();
-                gvSeleccionados.DataSource = tabla;
-                gvSeleccionados.DataBind();
+                cargarGrilla();
                 lbl_PrecioTotal.Visible = false;
-
             }
             calculoPrecioFinal();
         }
@@ -32,10 +27,10 @@ namespace TP6_GRUPO_17
             { 
             DataTable dataTable = ((DataTable)Session["tabla"]);
             decimal precioFinal = 0.0M;
+            int i = 0;
             foreach (DataRow dr in dataTable.Rows)
             {
-                int i = 0;
-                precioFinal =  ((decimal)dr["PrecioUnidad"]);
+                precioFinal +=  ((decimal)dr["PrecioUnidad"]) * Convert.ToInt32(dataTable.Rows[i]["Cantidad"]);
                 i++;
             }
             lbl_PrecioTotal.Visible=true;
@@ -50,6 +45,29 @@ namespace TP6_GRUPO_17
             gvSeleccionados.DataBind();
             lbl_PrecioTotal.Visible = false;
 
+        }
+
+        protected void gvSeleccionados_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            gvSeleccionados.EditIndex = e.NewEditIndex;
+            cargarGrilla();
+        }
+
+        private void cargarGrilla()
+        {
+            gvSeleccionados.DataSource = (DataTable)Session["tabla"];
+            gvSeleccionados.DataBind();
+        }
+
+        protected void gvSeleccionados_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            DataTable aux = new DataTable();
+            aux = (DataTable)Session["tabla"];
+            aux.Rows[e.RowIndex]["Cantidad"] = ((TextBox)gvSeleccionados.Rows[e.RowIndex].FindControl("txt_gv_Cantidad")).Text;
+            Session["tabla"] = aux;
+            gvSeleccionados.EditIndex = -1;
+            cargarGrilla();
+            calculoPrecioFinal();
         }
     }
 }

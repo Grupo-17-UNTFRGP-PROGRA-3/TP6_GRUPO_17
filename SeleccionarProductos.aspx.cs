@@ -16,7 +16,7 @@ namespace TP6_GRUPO_17
             if (!IsPostBack)
             {
                 CargarGridView();
-                
+               
             }
         }
         private void CargarGridView()
@@ -36,16 +36,17 @@ namespace TP6_GRUPO_17
         {
             GridViewRow seleccionado = gvProductos2.SelectedRow;
             string nombreProducto = ((Label)seleccionado.FindControl("lblNombreProducto")).Text;
-
             lblMensaje.Text = $"Producto seleccionado: {nombreProducto}";
-
             DataTable tabla = (DataTable)Session["tabla"];
-
             DataTable aux = new DataTable();
-
             GestionProductos sel = new GestionProductos();
-
             aux = sel.ObtenerUnProducto(Convert.ToInt32(((Label)seleccionado.FindControl("lblIdProducto")).Text));
+           
+            DataColumn dc = new DataColumn("Cantidad", typeof(string))
+            {
+                DefaultValue = "1"
+            };
+            aux.Columns.Add(dc);
 
             if (tabla == null)
             {
@@ -69,7 +70,6 @@ namespace TP6_GRUPO_17
                     tabla.Merge(aux);
                 }
             }
-
         }
     }
 }
