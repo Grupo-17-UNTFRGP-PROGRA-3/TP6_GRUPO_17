@@ -63,8 +63,15 @@ namespace TP6_GRUPO_17
         {
             DataTable aux = new DataTable();
             aux = (DataTable)Session["tabla"];
-            aux.Rows[e.RowIndex]["Cantidad"] = ((TextBox)gvSeleccionados.Rows[e.RowIndex].FindControl("txt_gv_Cantidad")).Text;
-            Session["tabla"] = aux;
+
+            int cantidadIngresada = Convert.ToInt32(((TextBox)gvSeleccionados.Rows[e.RowIndex].FindControl("txt_gv_Cantidad")).Text);
+
+            if ( cantidadIngresada >= 1)
+            {
+                aux.Rows[e.RowIndex]["Cantidad"] = ((TextBox)gvSeleccionados.Rows[e.RowIndex].FindControl("txt_gv_Cantidad")).Text;
+                Session["tabla"] = aux;
+            }
+
             gvSeleccionados.EditIndex = -1;
             cargarGrilla();
             calculoPrecioFinal();
