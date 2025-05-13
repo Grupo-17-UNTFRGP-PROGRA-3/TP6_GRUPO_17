@@ -9,7 +9,8 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:GridView ID="gvSeleccionados" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowEditing="gvSeleccionados_RowEditing" OnRowUpdating="gvSeleccionados_RowUpdating">
+            <asp:Label ID="lblSinProductos" Text="No tiene productos seleccionados." runat="server" Visible="false" />
+            <asp:GridView ID="gvSeleccionados" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnRowEditing="gvSeleccionados_RowEditing" OnRowUpdating="gvSeleccionados_RowUpdating" OnRowCancelingEdit="gvSeleccionados_RowCancelingEdit">
                 <Columns>
                     <asp:TemplateField AccessibleHeaderText="IDProd" HeaderText="ID Prod">
                         <ItemTemplate>
@@ -33,13 +34,17 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Cantidad">
                         <EditItemTemplate>
-                            <asp:TextBox ID="txt_gv_Cantidad" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txt_gv_Cantidad" runat="server" TextMode="Number"></asp:TextBox>
+                            <asp:RegularExpressionValidator ID="revCantidad" runat="server" ControlToValidate="txt_gv_Cantidad"
+                                ValidationExpression="^[1-9]\d*$" ErrorMessage="Ingrese un nro. entero positivo" ForeColor="Red" Display ="Dynamic" />
+                            <asp:RequiredFieldValidator ID="rfCantidad" runat="server" ControlToValidate="txt_gv_Cantidad" ErrorMessage="Complete el campo"
+                                ForeColor="Red" Display="Dynamic" />
                         </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="lbl_gv_Cantidad" runat="server" Text='<%# Bind("Cantidad") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:CommandField ButtonType="Button" HeaderText="Cambiar Cantidad" ShowCancelButton="False" ShowEditButton="True" ShowHeader="True" />
+                    <asp:CommandField ButtonType="Button" HeaderText="Cambiar Cantidad" ShowCancelButton="True" ShowEditButton="True" ShowHeader="True" />
                 </Columns>
                 <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
                 <HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />

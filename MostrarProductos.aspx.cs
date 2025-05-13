@@ -15,48 +15,49 @@ namespace TP6_GRUPO_17
         {
             if (!IsPostBack)
             {
+                ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
                 cargarGrilla();
-                lbl_PrecioTotal.Visible = false;
             }
-            calculoPrecioFinal();
         }
 
-       private void calculoPrecioFinal()
+       private decimal calculoPrecioFinal(DataTable tablaSeleccionados)
         {
-            if(gvSeleccionados.DataSource != null)
-            { 
-            DataTable dataTable = ((DataTable)Session["tabla"]);
             decimal precioFinal = 0.0M;
-            int i = 0;
-            foreach (DataRow dr in dataTable.Rows)
+            foreach (DataRow dr in tablaSeleccionados.Rows)
             {
-                precioFinal +=  ((decimal)dr["PrecioUnidad"]) * Convert.ToInt32(dataTable.Rows[i]["Cantidad"]);
-                i++;
+                precioFinal += ((decimal)dr["PrecioUnidad"]) * Convert.ToInt32(dr["Cantidad"]);
             }
-            lbl_PrecioTotal.Visible=true;
-            lbl_PrecioTotal.Text = "Precio Total = $ " + precioFinal.ToString();
+            return precioFinal;
+        }
+        private void cargarGrilla()
+        {
+            DataTable tabla = Session["tabla"] as DataTable;
+            gvSeleccionados.DataSource = tabla;
+            gvSeleccionados.DataBind();
+
+            if(tabla == null)
+            {
+                lblSinProductos.Visible = true;
+                lbl_PrecioTotal.Visible = false;
+                return;
             }
+
+            lbl_PrecioTotal.Text = $"Precio Total = {calculoPrecioFinal(tabla).ToString("C")}";
+
+            lblSinProductos.Visible = false;
+            lbl_PrecioTotal.Visible = true;
         }
 
         protected void lbEliminarProductos_Click(object sender, EventArgs e)
         {
             Session["tabla"] = null;
-            gvSeleccionados.DataSource = null;
-            gvSeleccionados.DataBind();
-            lbl_PrecioTotal.Visible = false;
-
+            cargarGrilla();
         }
 
         protected void gvSeleccionados_RowEditing(object sender, GridViewEditEventArgs e)
         {
             gvSeleccionados.EditIndex = e.NewEditIndex;
             cargarGrilla();
-        }
-
-        private void cargarGrilla()
-        {
-            gvSeleccionados.DataSource = (DataTable)Session["tabla"];
-            gvSeleccionados.DataBind();
         }
 
         protected void gvSeleccionados_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -74,7 +75,12 @@ namespace TP6_GRUPO_17
 
             gvSeleccionados.EditIndex = -1;
             cargarGrilla();
-            calculoPrecioFinal();
+        }
+
+        protected void gvSeleccionados_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvSeleccionados.EditIndex = -1;
+            cargarGrilla();
         }
     }
 }
