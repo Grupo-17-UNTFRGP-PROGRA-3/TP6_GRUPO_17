@@ -18,7 +18,7 @@ namespace TP6_GRUPO_17
         protected void lbEliminarProductos_Click(object sender, EventArgs e)
         {
             Session["tabla"] =null;
-            Response.Redirect("MostrarProductos.aspx");
+            lbl_MensajeEliminados.Text = "Los productos seleccionados fueron exitosamente eliminados";
         }
     }
 }
