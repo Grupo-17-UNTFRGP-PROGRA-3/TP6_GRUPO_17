@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -17,8 +18,15 @@ namespace TP6_GRUPO_17
 
         protected void lbEliminarProductos_Click(object sender, EventArgs e)
         {
-            Session["tabla"] =null;
-            lbl_MensajeEliminados.Text = "Los productos seleccionados fueron exitosamente eliminados";
+            if (Session["tabla"] == null)
+            {
+                lbl_MensajeEliminados.Text = "No tiene productos seleccionados.";
+                return;
+            }
+
+            int cantProductos = ((DataTable)Session["tabla"]).Rows.Count;
+            Session["tabla"] = null;
+            lbl_MensajeEliminados.Text = $"Los productos seleccionados fueron exitosamente eliminados ({cantProductos}).";
         }
     }
 }
